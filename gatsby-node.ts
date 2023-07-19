@@ -9,17 +9,36 @@ export const createPages = async ({ graphql, actions }: CreatePagesArgs) => {
   const { createPage } = actions;
 
   const pageTemplate = path.resolve(`src/templates/builder-page/index.tsx`);
+  const pageNoSsrTemplate = path.resolve(
+    `src/templates/builder-page-no-ssr/index.tsx`
+  );
 
-  const pages = await builder.getAll('page', {
+  const pagesSsr = await builder.getAll('page', {
     // We only need the URL field
     fields: 'data.url',
     options: { noTargeting: true },
   });
 
-  pages.forEach((page) => {
+  const pagesNoSsr = await builder.getAll('page-no-ssr', {
+    // We only need the URL field
+    fields: 'data.url',
+    options: { noTargeting: true },
+  });
+
+  pagesSsr.forEach((page) => {
     createPage({
       path: page?.data?.url,
       component: pageTemplate,
+      context: {
+        urlPath: page?.data?.url,
+      },
+    });
+  });
+
+  pagesNoSsr.forEach((page) => {
+    createPage({
+      path: page?.data?.url,
+      component: pageNoSsrTemplate,
       context: {
         urlPath: page?.data?.url,
       },
