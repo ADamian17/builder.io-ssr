@@ -2,7 +2,7 @@ import path from 'path';
 import type { CreatePagesArgs } from 'gatsby';
 import { builder } from '@builder.io/react';
 
-builder.init(process.env.BUILDER_API_KEY!);
+builder.init(process.env.GATSBY_BUILDER_API_KEY!);
 
 // Create blog pages dynamically
 export const createPages = async ({ graphql, actions }: CreatePagesArgs) => {

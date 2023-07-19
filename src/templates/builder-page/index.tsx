@@ -2,7 +2,7 @@ import * as React from "react"
 import { type PageProps, type GetServerData, Link } from "gatsby"
 import { BuilderComponent, builder } from "@builder.io/react"
 
-builder.init(process.env.BUILDER_API_KEY!);
+builder.init(process.env.GATSBY_BUILDER_API_KEY!);
 
 const BuilderPage: React.FC<PageProps<_, _, _, { content: any }>> = ({ serverData }) => {
   return (
