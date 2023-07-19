@@ -1,6 +1,6 @@
 import path from 'path';
 import type { CreatePagesArgs } from 'gatsby';
-import { BuilderComponent, builder, useIsPreviewing } from '@builder.io/react';
+import { builder } from '@builder.io/react';
 
 builder.init(process.env.BUILDER_API_KEY!);
 

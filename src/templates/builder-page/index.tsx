@@ -12,7 +12,7 @@ const BuilderPage: React.FC<PageProps<_, _, _, { content: any }>> = ({ serverDat
           <li><Link to="/">Home</Link></li>
           <li><Link to="/blogs">blogs</Link></li>
           <li><Link to="/contact">Contacts</Link></li>
-          <li><Link to="/page-no-ssr">/Page No Ssr</Link></li>
+          <li><Link to="/page-no-ssr">Page No Ssr</Link></li>
         </ul>
       </nav>
 
