@@ -1,15 +1,25 @@
 import * as React from "react"
-import type { PageProps, GetServerData } from "gatsby"
+import { type PageProps, type GetServerData, Link } from "gatsby"
 import { BuilderComponent, builder } from "@builder.io/react"
 
 builder.init(process.env.BUILDER_API_KEY!);
 
 const BuilderPage: React.FC<PageProps<_, _, _, { content: any }>> = ({ serverData }) => {
   return (
-    <BuilderComponent
-      content={serverData?.content}
-      model="page"
-    />
+    <>
+      <nav>
+        <ul style={{ display: "flex", gap: 24 }}>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/blogs">blogs</Link></li>
+          <li><Link to="/contact">Contacts</Link></li>
+        </ul>
+      </nav>
+
+      <BuilderComponent
+        content={serverData?.content}
+        model="page"
+      />
+    </>
   )
 }
 
