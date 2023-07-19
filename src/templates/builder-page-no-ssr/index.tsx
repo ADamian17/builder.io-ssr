@@ -30,4 +30,4 @@ const BuilderPageNoSsr: React.FC<PageProps<_, { urlPath: string }>> = ({ pageCon
   )
 }
 
-export default BuilderPageNoSsr
+export default BuilderPageNoSsr;
