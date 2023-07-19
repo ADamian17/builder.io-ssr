@@ -24,7 +24,7 @@ const BuilderPageNoSsr: React.FC<PageProps<_, { urlPath: string }>> = ({ pageCon
 
       <BuilderComponent
         content={builderContent!}
-        model="page"
+        model="page-no-ssr"
       />
     </>
   )
