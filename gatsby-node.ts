@@ -15,13 +15,13 @@ export const createPages = async ({ graphql, actions }: CreatePagesArgs) => {
 
   const pagesSsr = await builder.getAll('page', {
     // We only need the URL field
-    fields: 'data.url',
+    fields: 'data, data.url',
     options: { noTargeting: true },
   });
 
   const pagesNoSsr = await builder.getAll('page-no-ssr', {
     // We only need the URL field
-    fields: 'data.url',
+    fields: 'data, data.url',
     options: { noTargeting: true },
   });
 
@@ -31,6 +31,7 @@ export const createPages = async ({ graphql, actions }: CreatePagesArgs) => {
       component: pageTemplate,
       context: {
         urlPath: page?.data?.url,
+        seo: page.data?.seo,
       },
     });
   });
