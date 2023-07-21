@@ -53,7 +53,7 @@ export const Head = (context: HeadProps) => {
 
 export const getServerData: GetServerData<ServerDataProps> = async (context) => {
   const builderContent = await builder.get('page', { url: context.pageContext?.urlPath as string }).promise();
-  console.log({ context, builderContent });
+  // console.log({ context, builderContent });
 
   if (!builderContent) return {
     status: 404

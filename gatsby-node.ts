@@ -26,6 +26,8 @@ export const createPages = async ({ graphql, actions }: CreatePagesArgs) => {
   });
 
   pagesSsr.forEach((page) => {
+    console.log(page);
+
     createPage({
       path: page?.data?.url,
       component: pageTemplate,
@@ -37,6 +39,8 @@ export const createPages = async ({ graphql, actions }: CreatePagesArgs) => {
   });
 
   pagesNoSsr.forEach((page) => {
+    console.log(page);
+
     createPage({
       path: page?.data?.url,
       component: pageNoSsrTemplate,
