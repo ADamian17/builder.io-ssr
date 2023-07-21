@@ -19,15 +19,13 @@ export const createPages = async ({ graphql, actions }: CreatePagesArgs) => {
     options: { noTargeting: true },
   });
 
-  const pagesNoSsr = await builder.getAll('page-no-ssr', {
-    // We only need the URL field
-    fields: 'data, data.url',
-    options: { noTargeting: true },
-  });
+  // const pagesNoSsr = await builder.getAll('page-no-ssr', {
+  //   // We only need the URL field
+  //   fields: 'data, data.url',
+  //   options: { noTargeting: true },
+  // });
 
   pagesSsr.forEach((page) => {
-    console.log(page);
-
     createPage({
       path: page?.data?.url,
       component: pageTemplate,
@@ -38,15 +36,13 @@ export const createPages = async ({ graphql, actions }: CreatePagesArgs) => {
     });
   });
 
-  pagesNoSsr.forEach((page) => {
-    console.log(page);
-
-    createPage({
-      path: page?.data?.url,
-      component: pageNoSsrTemplate,
-      context: {
-        urlPath: page?.data?.url,
-      },
-    });
-  });
+  // pagesNoSsr.forEach((page) => {
+  //   createPage({
+  //     path: page?.data?.url,
+  //     component: pageNoSsrTemplate,
+  //     context: {
+  //       urlPath: page?.data?.url,
+  //     },
+  //   });
+  // });
 };

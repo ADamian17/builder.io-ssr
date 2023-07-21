@@ -38,11 +38,13 @@ export const Head = (context: HeadProps) => {
   return (
     <>
       <meta
+        key="desc"
         name="description"
         content={seo.description}
       />
       <meta
         name="robots"
+        key="robots"
         content={`max-snippet:-1, max-image-preview:large, max-video-preview:-1, ${seo.index ? "index,follow" : "noindex,nofollow"}`}
       />
 
@@ -53,7 +55,6 @@ export const Head = (context: HeadProps) => {
 
 export const getServerData: GetServerData<ServerDataProps> = async (context) => {
   const builderContent = await builder.get('page', { url: context.pageContext?.urlPath as string }).promise();
-  // console.log({ context, builderContent });
 
   if (!builderContent) return {
     status: 404

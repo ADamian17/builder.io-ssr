@@ -20,7 +20,7 @@ const MainLayout: React.FC<MainLayoutType> = (props) => {
             <a href="/contact">Contacts</a>
           </li>
           <li>
-            <a href="/page-no-ssr">Page No Ssr</a>
+            <Link to="/page-no-ssr">Page No Ssr</Link>
           </li>
         </ul>
       </nav>

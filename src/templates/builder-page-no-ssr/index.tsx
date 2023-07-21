@@ -1,28 +1,22 @@
 import * as React from "react"
-import { type PageProps } from "gatsby"
+import { graphql, type PageProps } from "gatsby"
 import { BuilderComponent, builder } from "@builder.io/react"
 import MainLayout from "../../layouts/MainLayout.index";
 
 builder.init(process.env.GATSBY_BUILDER_API_KEY!);
 
 type PageContextType = {
-  urlPath: string;
+  allBuilderModels: any
 }
 
-const BuilderPageNoSsr: React.FC<PageProps> = ({ pageContext }) => {
-  const [builderContent, setBuilderContent] = React.useState(null)
-
-  React.useEffect(() => {
-    builder
-      .get('page-no-ssr', { url: (pageContext as PageContextType)?.urlPath })
-      .promise()
-      .then(setBuilderContent)
-  }, [])
+const BuilderPageNoSsr: React.FC<PageProps<PageContextType>> = ({ data }) => {
+  const models = data?.allBuilderModels;
+  const page = models.onePageNoSsr?.content;
 
   return (
     <MainLayout>
       <BuilderComponent
-        content={builderContent!}
+        content={page}
         model="page-no-ssr"
       />
     </MainLayout>
@@ -30,3 +24,13 @@ const BuilderPageNoSsr: React.FC<PageProps> = ({ pageContext }) => {
 }
 
 export default BuilderPageNoSsr;
+
+export const pageQuery = graphql`
+  query ($path: String!) {
+    allBuilderModels {
+      onePageNoSsr(target: { urlPath: $path }) {
+        content
+      }
+    }
+  }
+`;
