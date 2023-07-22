@@ -11,13 +11,13 @@ const MainLayout: React.FC<MainLayoutType> = (props) => {
       <nav>
         <ul style={{ display: "flex", gap: 24 }}>
           <li>
-            <a href="/">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="/blogs">blogs</a>
+            <Link to="/blogs">blogs</Link>
           </li>
           <li>
-            <a href="/contact">Contacts</a>
+            <Link to="/contact">Contacts</Link>
           </li>
           <li>
             <Link to="/page-no-ssr">Page No Ssr</Link>
