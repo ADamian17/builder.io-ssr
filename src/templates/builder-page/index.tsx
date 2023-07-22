@@ -4,7 +4,19 @@ import { BuilderComponent, builder } from "@builder.io/react"
 
 builder.init(process.env.GATSBY_BUILDER_API_KEY!);
 
-const BuilderPage: React.FC<PageProps<_, _, _, { content: any }>> = ({ serverData }) => {
+type ServerDataType = {
+  content: any
+}
+
+type SeoDataType = {
+  seo: {
+    title: string,
+    description: string,
+    index: boolean
+  }
+}
+
+const BuilderPage: React.FC<PageProps> = ({ serverData }) => {
   return (
     <>
       <nav>
@@ -17,7 +29,7 @@ const BuilderPage: React.FC<PageProps<_, _, _, { content: any }>> = ({ serverDat
       </nav>
 
       <BuilderComponent
-        content={serverData?.content}
+        content={(serverData as ServerDataType)?.content}
         model="page"
       />
     </>
@@ -26,28 +38,26 @@ const BuilderPage: React.FC<PageProps<_, _, _, { content: any }>> = ({ serverDat
 
 export default BuilderPage
 
-export const Head = (context: HeadProps<_, { seo: { title: string, description: string, index: boolean } }>) => {
-  console.log("head component", context.pageContext?.seo);
+export const Head = (context: HeadProps) => {
+  const seo = (context.pageContext as SeoDataType)?.seo
 
   return (
     <>
       <meta
         name="description"
-        content={context.pageContext.seo.description}
+        content={seo.description}
       />
       <meta
         name="robots"
-        content={`max-snippet:-1, max-image-preview:large, max-video-preview:-1, ${context.pageContext.seo.index ? "index,follow" : "noindex,nofollow"}`}
+        content={`max-snippet:-1, max-image-preview:large, max-video-preview:-1, ${seo.index ? "index,follow" : "noindex,nofollow"}`}
       />
 
-      <title>{context.pageContext.seo.title}</title>
+      <title>{seo.title}</title>
     </>
   )
 }
 
-export const getServerData: GetServerData<{
-  content: any
-}> = async (context) => {
+export const getServerData: GetServerData<ServerDataType> = async (context) => {
   const content = await builder.get('page', { url: context.pageContext?.urlPath as string }).promise();
 
   if (!content) return {
