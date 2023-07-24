@@ -30,14 +30,7 @@ const config: GatsbyConfig = {
         },
       },
     },
-    {
-      resolve: `gatsby-plugin-gatsby-cloud`,
-      options: {
-        allPageHeaders: [
-          'Link: <static/icons/favicon.png>; rel=preload; as=image',
-        ],
-      },
-    },
+    `gatsby-plugin-gatsby-cloud`,
   ],
   flags: {
     DEV_SSR: true,
