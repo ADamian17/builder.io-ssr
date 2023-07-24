@@ -64,6 +64,9 @@ export const getServerData: GetServerData<ServerDataProps> = async (context) => 
 
   return {
     status: 200,
+    headers: {
+      'Cache-Control': 'public, max-age=10, s-maxage=60, stale-while-revalidate=240',
+    },
     props: {
       builderContent
     }
